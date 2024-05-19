@@ -18,10 +18,20 @@ const LoginPage = () => {
   const [email,setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error , setError] = useState('');
+  const [showAlert,setShowAlert] = useState(false);
+
+
+  const triggerError = (message) => {
+    setError(message);
+    setShowAlert(true);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
+
+     
+
       const response = await axios.post('http://localhost:8080/authenticate', {email,password});
 
       const userRole = response.data.user.role;
@@ -29,13 +39,17 @@ const LoginPage = () => {
       if(userRole === 'admin'){
         navigate('/dashboard');
       }else{
-        navigate('/');
+        navigate('/staff');
       }
     
-
+      console.log(response.data.user.role)
 
     }catch (error){
-      setError('Invalid Email password')
+      if (email == "" || password == ""){
+        triggerError("Some area are not filled-up!!")
+      }else{
+        triggerError('Invalid Email password');
+      }
     }
   }
   const handleRegistration = () => {
@@ -54,6 +68,12 @@ const LoginPage = () => {
     </div>
     <div className="card-body">
       <p className="login-box-msg">Sign in to start your session</p>
+      {showAlert &&<div className="alert alert-danger alert-dismissible">
+  <button type="button" className="close" onClick={()=>setShowAlert(false)} aria-hidden="true">×</button>
+  <h5><i className="icon fas fa-ban" /> Alert!</h5>
+  {error}
+</div>
+}
       <form onSubmit={handleSubmit}>
         <div className="input-group mb-3">
           <input type="email" className="form-control" placeholder="Email"    value={email}
@@ -88,7 +108,7 @@ const LoginPage = () => {
           </div>
           {/* /.col */}
         </div>
-        {error && <p>{error}</p>}
+        
       </form>
       {/* /.social-auth-links */}
       <p className="mb-1">
