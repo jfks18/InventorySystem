@@ -9,6 +9,8 @@ import RegisterPage from './pages/registerPage';
 import Dashboard from './pages/dashboard';
 import StaffPage from './pages/staffPage';
 import ProtectedRoute from './components/protectedRoute';
+import InventoryPage from './pages/AdminPage/inventoryPage';
+import ProductPage from './pages/AdminPage/productPage';
 
 
 function App() {
