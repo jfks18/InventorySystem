@@ -20,6 +20,14 @@ class LoginController extends ResourceController
         $this->userModel = new User();
     }
 
+    public function logout()
+    {
+        // Destroy session data
+        session()->destroy();
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Logged out successfully']);
+    }
+
     // Authenticate user
     public function authenticate()
     {
