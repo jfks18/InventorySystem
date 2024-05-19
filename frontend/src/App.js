@@ -7,9 +7,8 @@ import {BrowserRouter, Routes,Route} from 'react-router-dom';
 import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/registerPage';
 import Dashboard from './pages/dashboard';
-
-
-
+import StaffPage from './pages/staffPage';
+import ProtectedRoute from './components/protectedRoute';
 
 
 function App() {
@@ -19,7 +18,8 @@ function App() {
     <Routes>
       <Route path='/' index element={<LoginPage/>}/>
       <Route path='/registration' element= {<RegisterPage/>}/>
-      <Route path='/dashboard' element = {<Dashboard/>}/>
+      <Route path='/dashboard' element={<ProtectedRoute component={Dashboard} allowedRoles={['admin']} />}/>
+      <Route path='/staff' element = {<StaffPage/>}/>
     </Routes>
     </BrowserRouter>
     </>
