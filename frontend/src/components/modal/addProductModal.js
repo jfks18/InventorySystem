@@ -15,7 +15,20 @@ function AddProductModal() {
           </button>
         </div>
         <div className="modal-body">
-          <p>John Francis Karl D. Suyat</p>
+         <div className="row">
+          <div className='col-6'>
+            <div className='form-group'>
+              <label for="product">Product Name</label>
+              <input type="text" className="form-control" placeholder="EX. Datu Puti (soy)"></input>
+            </div>
+          </div>
+          <div className='col-5'>
+          <div className='form-group'>
+              <label for="product">Price</label>
+              <input type="text" className="form-control" placeholder="500"></input>
+            </div>
+          </div>
+         </div>
         </div>
         <div className="modal-footer justify-content-between">
           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
