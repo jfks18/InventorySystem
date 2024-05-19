@@ -8,47 +8,74 @@ import "admin-lte/dist/js/adminlte.min.js";
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const [status, setStatus] = useState(false);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+  });
+  const [repassword,setRepassword] = useState("");
 
-    const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
-    const [userData, setUserData] = useState({
-        email: "",
-        password: "",
-        fullName: "",
-    });
+  const triggerError = (message) => {
+    setError(message);
+    setShowAlert(true);
+  };
 
+  const handleRepassword = (text) => {
+    setRepassword(text.target.value);
+  }
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserData({ ...userData, [name]: value });
-      };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!userData.email || !userData.password) {
-         console.log('Error');
-        }
-        try {
-          // Make POST request to register endpoint
-          const response = await axios.post('http://localhost:8080/register', userData);
-          console.log(response.data); // Log response data (optional)
-          // Redirect or handle success as needed
-        } catch (error) {
-          console.error('Error registering user:', error);
-          // Handle error (e.g., display error message)
-        }
-      };
-
-    const handleHasAccount = () =>{
-        navigate('/');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!userData.email || !userData.password) {
+      console.log("Error");
     }
+    try {
+      // Make POST request to register endpoint
+      if(repassword === userData.password){
+        const response = await axios.post(
+          "http://localhost:8080/register",
+          userData
+        );
+        console.log(response.data); // Log response data (optional)
+        if(userData.email === "" || userData.password === "" || userData === ""){
+          triggerError("Some areas are not filled-up");
+        }else{
+          if(response.data.success === false){
+            triggerError(response.data.message);
+          }else{
+            alert(response.data.message);
+          }
+            
+          }
+      }else{
+        triggerError("password not matched");
+      }
+  
+    } catch (error) {
 
+        triggerError("something Went wrong", error);
 
+      console.error("Error registering user:", error);
+      // Handle error (e.g., display error message)
+    }
+  };
 
+  const handleHasAccount = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -60,8 +87,25 @@ const RegisterPage = () => {
                 <b>Inventory</b> System
               </a>
             </div>
+
             <div className="card-body">
               <p className="login-box-msg">Register a new membership</p>
+              {showAlert && (
+                <div className="alert alert-danger alert-dismissible">
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={() => setShowAlert(false)}
+                    aria-hidden="true"
+                  >
+                    ×
+                  </button>
+                  <h5>
+                    <i className="icon fas fa-ban" /> Alert!
+                  </h5>
+                  {error}
+                </div>
+              )}
               <form onSubmit={handleSubmit}>
                 <div className="input-group mb-3">
                   <input
@@ -80,8 +124,8 @@ const RegisterPage = () => {
                 </div>
                 <div className="input-group mb-3">
                   <input
-                      type="email"
-                      name="email"
+                    type="email"
+                    name="email"
                     className="form-control"
                     placeholder="Email"
                     value={userData.email}
@@ -113,6 +157,9 @@ const RegisterPage = () => {
                     type="password"
                     className="form-control"
                     placeholder="Retype password"
+                    name="repassword"
+                    value={repassword}
+                    onChange={handleRepassword}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -143,8 +190,12 @@ const RegisterPage = () => {
                   {/* /.col */}
                 </div>
               </form>
-              
-              <a onClick={handleHasAccount} style={{cursor:'pointer'}} className="text-center">
+
+              <a
+                onClick={handleHasAccount}
+                style={{ cursor: "pointer" }}
+                className="text-center"
+              >
                 I already have a membership
               </a>
             </div>

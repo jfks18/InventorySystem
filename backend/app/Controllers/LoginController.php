@@ -102,16 +102,28 @@ class LoginController extends ResourceController
 
          // Add debugging statements
  
-
-       if ($this->userModel->save($user_data)) {
+    $user = $this->userModel->where('email', $email)->first();
+       if (!$user) {
         // Get the insert ID
-   
-
         // Registration successful
-        return $this->response->setStatusCode(201)->setJSON(['success' => true, 'message' => 'User registered successfully']);
+        if($this->userModel->save($user_data)){
+            return $this->respond([
+                'success' => true,
+                'message' => 'User Registerd successfully',
+            ]);
+        }else{
+            return $this->respond([
+                'success' => false,
+                'message' => 'There is a problem',
+            ]);
+        }
+        
     } else {
         // Registration failed
-        return $this->fail(['success' => false, 'message' => 'Failed to register user'], 400);
+        return $this->respond([
+            'success' => false,
+            'message' => 'Email Exists',
+        ]);
     }
    }
 }
