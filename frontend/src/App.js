@@ -19,7 +19,7 @@ function App() {
       <Route path='/' index element={<LoginPage/>}/>
       <Route path='/registration' element= {<RegisterPage/>}/>
       <Route path='/dashboard' element={<ProtectedRoute component={Dashboard} allowedRoles={['admin']} />}/>
-      <Route path='/staff' element = {<StaffPage/>}/>
+      <Route path='/staff' element = {<ProtectedRoute component={StaffPage} allowedRoles={['staff']}/>} />
     </Routes>
     </BrowserRouter>
     </>

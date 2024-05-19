@@ -1,4 +1,7 @@
 import React from 'react'
+import LogoutButton from './buttons/logoutButton'
+
+
 
 function TopNavbar() {
   return (
@@ -14,6 +17,9 @@ function TopNavbar() {
     </li>
     <li className="nav-item d-none d-sm-inline-block">
       <a href="#" className="nav-link">Contact</a>
+    </li>
+    <li className="nav-item d-none d-sm-inline-block">
+      <LogoutButton/>
     </li>
   </ul>
   {/* Right navbar links */}
