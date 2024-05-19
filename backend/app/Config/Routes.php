@@ -15,4 +15,5 @@ $routes->get('/home', 'Home::index');
     // Routes for registration
     $routes->post('/register', 'LoginController::register',['filter','cors']);
     $routes->post('authenticate', 'LoginController::authenticate');
+    $routes->get('/logout','LoginController::logout');
 

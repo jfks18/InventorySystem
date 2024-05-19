@@ -33,24 +33,29 @@ const LoginPage = () => {
      
 
       const response = await axios.post('http://localhost:8080/authenticate', {email,password});
+      if (response.data.success === true){
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        const userRole = response.data.user.role;
 
-      const userRole = response.data.user.role;
-
-      if(userRole === 'admin'){
-        navigate('/dashboard');
+        if(userRole === 'admin'){
+          navigate('/dashboard');
+        }else if(userRole === 'staff'){
+          navigate('/staff');
+        }
+        console.log(response.data.user.role)
+  
       }else{
-        navigate('/staff');
+        alert(response.data.message);
       }
-    
-      console.log(response.data.user.role)
-
-    }catch (error){
-      if (email == "" || password == ""){
-        triggerError("Some area are not filled-up!!")
-      }else{
-        triggerError('Invalid Email password');
+       
+      }catch (error){
+        if (email == "" || password == ""){
+          triggerError("Some area are not filled-up!!")
+        }else{
+          triggerError('Invalid Email password');
+        }
       }
-    }
+      
   }
   const handleRegistration = () => {
     navigate('/registration');
