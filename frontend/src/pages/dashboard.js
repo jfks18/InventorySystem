@@ -13,6 +13,8 @@ import 'datatables.net-buttons-bs4'; // DataTables Buttons JavaScript
 import 'admin-lte/dist/js/adminlte.min.js';
 import AddProductModal from '../components/modal/addProductModal';
 
+import axios from 'axios';
+
 
 
 function Dashboard() {
