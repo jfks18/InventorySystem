@@ -35,6 +35,7 @@ const StaffPage = () => {
     <TopNavbar/>
     <SideNavbar/>
     <AddProductModal/>
+
   
 
     <div className='content-wrapper'>
@@ -42,7 +43,7 @@ const StaffPage = () => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='mb-0'>Inventories</h1>
+              <h1 className='mb-0'>Product</h1>
             </div>
           </div>
         </div>
@@ -53,7 +54,7 @@ const StaffPage = () => {
   <div className="card-header">
     <h3 className="card-title">DataTable with default features</h3>
   </div>
-  {/* /.card-header */}
+  {/* /.card-header*/}
   <div className="card-body">
 
    <ProductTable/>
