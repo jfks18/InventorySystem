@@ -22,7 +22,9 @@ class InventoryController extends ResourceController
 
     public function index()
     {
-        //
+        $products = $this->productModel->findAll();
+
+        return $this->response->setJSON($products);
     }
 
     public function storeProduct(){
