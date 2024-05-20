@@ -29,22 +29,29 @@ class InventoryController extends ResourceController
 
     public function storeProduct(){
 
+
+        $json = $this->request->getJSON();
+
+
         $validation = \Config\Services::validation();
         $validation->setRules([
             'productName' => 'required',
-            'Price' => 'required',
-            'QuantityInStock' => 'required',
-            'PackagingType' => 'required',
-            'UnitsPerPack' => 'required'
+            'price' => 'required',
+            'quantity' => 'required',
+            'packaging' => 'required',
+            'units' => 'required'
         ]);
 
 
         if (!$validation->withRequest($this->request)->run()) {
             // Validation failed, return error response
+
+            log_message('debug', print_r($validation->getErrors(), true));
             return $this->failValidationErrors($validation->getErrors());
         } 
 
-        $json = $this->request->getJSON();
+
+        
 
         $product = $json->productName;
         $price = $json->price;

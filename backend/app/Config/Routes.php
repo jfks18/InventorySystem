@@ -16,7 +16,7 @@ $routes->get('/home', 'Home::index');
     $routes->post('/register', 'LoginController::register',['filter','cors']);
     $routes->post('authenticate', 'LoginController::authenticate');
     $routes->get('/logout','LoginController::logout');
-    $routes->post('/registerProduct', 'InventoryController::storeProduct');
+    $routes->post('registerProduct','InventoryController::storeProduct');
     $routes->get('/products','InventoryController::index');
    
 
