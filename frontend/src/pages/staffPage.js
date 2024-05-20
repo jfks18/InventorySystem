@@ -4,19 +4,31 @@ import React, {useEffect,useRef} from 'react'
 
 import TopNavbar from '../components/topNavbar';
 import SideNavbar from '../components/sideNavbar';
-import $ from 'jquery';
-import 'admin-lte/dist/css/adminlte.min.css'; // AdminLTE CSS
-import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css'; // DataTables Bootstrap 4 CSS
-import 'admin-lte/plugins/fontawesome-free/css/all.min.css'; // Font Awesome CSS
-import 'datatables.net-bs4'; // DataTables JavaScript
-import 'datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'; // DataTables Buttons CSS
-import 'datatables.net-buttons-bs4'; // DataTables Buttons JavaScript
-import 'admin-lte/dist/js/adminlte.min.js';
 import AddProductModal from '../components/modal/addProductModal';
+import ProductPage from './AdminPage/productPage';
+// Import CSS
+import 'admin-lte/dist/css/adminlte.min.css'; // AdminLTE CSS
+import 'admin-lte/plugins/fontawesome-free/css/all.min.css'; // Font Awesome CSS
+import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css'; // DataTables Bootstrap 4 CSS
+import 'datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css'; // DataTables Responsive Bootstrap 4 CSS
 
+// Import JS
+import 'admin-lte/dist/js/adminlte.min.js'; // AdminLTE JS
+import 'datatables.net/js/jquery.dataTables.min.js'; // DataTables jQuery plugin
+import 'datatables.net-bs4/js/dataTables.bootstrap4.min.js'; // DataTables Bootstrap 4 JS
+import 'datatables.net-buttons/js/dataTables.buttons.min.js'; // DataTables Buttons JS
+import 'datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'; // DataTables Buttons Bootstrap 4 JS
+import 'datatables.net-buttons/js/buttons.html5.min.js'; // HTML5 export buttons
+import 'datatables.net-buttons/js/buttons.print.min.js'; // Print button
+
+
+import $ from 'jquery';
+import ProductTable from '../components/table/productTable';
 
 
 const StaffPage = () => {
+ 
+
   return (
     <div>
 
@@ -44,39 +56,10 @@ const StaffPage = () => {
   {/* /.card-header */}
   <div className="card-body">
 
-  <div>
-   <button type="button" className="btn btn-default" data-toggle="modal" data-target="#modal-default">
-    Launch Default Modal
-    </button>
+   <ProductTable/>
  
   </div>
 
-
-
-
-  <table id="example1" className="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
-        </tr>
-      </thead>
-      <tbody>
-        {/* Table body content */}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
-        </tr>
-      </tfoot>
-    </table>
   </div>
   {/* /.card-body */}
 </div>
@@ -87,7 +70,6 @@ const StaffPage = () => {
 
   
 
-    </div>
 
   
   )

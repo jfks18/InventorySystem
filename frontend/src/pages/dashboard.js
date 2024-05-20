@@ -5,13 +5,13 @@ import TopNavbar from '../components/topNavbar';
 import SideNavbar from '../components/sideNavbar';
 import $ from 'jquery';
 import 'admin-lte/dist/css/adminlte.min.css'; // AdminLTE CSS
-import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css'; // DataTables Bootstrap 4 CSS
 import 'admin-lte/plugins/fontawesome-free/css/all.min.css'; // Font Awesome CSS
-import 'datatables.net-bs4'; // DataTables JavaScript
-import 'datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'; // DataTables Buttons CSS
-import 'datatables.net-buttons-bs4'; // DataTables Buttons JavaScript
+
 import 'admin-lte/dist/js/adminlte.min.js';
 import AddProductModal from '../components/modal/addProductModal';
+
+import axios from 'axios';
+
 
 
 function Dashboard() {

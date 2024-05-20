@@ -6,6 +6,10 @@ use CodeIgniter\Model;
 
 class Product extends Model
 {
+
+
+
+
     protected $table            = 'products';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -43,4 +47,7 @@ class Product extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    
 }
